@@ -28,13 +28,20 @@ function addProductToCart(product, quantity) {
   const cart = document.querySelector('.cart-content');
 
   if (!cart) {
-    console.warn('fann ekki .cart');
+    console.warn('fann ekki .cart-content');
     return;
   }
-  
+
+  const tableLine = cart.querySelector('tbody');
+
+  if (!tableLine) {
+    console.warn('fann ekki tbody');
+    return;
+  }
+
   // TODO hér þarf að athuga hvort lína fyrir vöruna sé þegar til
   const cartLine = createCartLine(product, quantity);
-  cart.appendChild(cartLine);
+  tableLine.appendChild(cartLine);
 
   // Sýna efni körfu
   showCartContent(true);

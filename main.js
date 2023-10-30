@@ -1,3 +1,4 @@
+import { formatPrice } from './lib/helpers.js';
 import { createCartLine, showCartContent } from './lib/ui.js';
 
 /**
@@ -35,6 +36,7 @@ const products = [
  * @param {number} quantity 
  */
 function addProductToCart(product, quantity) {
+  let totalInCart = 0;
   const cartTableBodyElement = document.querySelector('.cart table tbody');
 
   if (!cartTableBodyElement) {
@@ -43,13 +45,21 @@ function addProductToCart(product, quantity) {
   }
 
   // TODO hér þarf að athuga hvort lína fyrir vöruna sé þegar til
-  const cartLine = createCartLine(product, quantity);
-  cartTableBodyElement.appendChild(cartLine);
-
+ 
+    const cartLine = createCartLine(product, quantity);
+    cartTableBodyElement.appendChild(cartLine);
+  
   // Sýna efni körfu
   showCartContent(true);
 
   // TODO sýna/uppfæra samtölu körfu
+  const totalInCartElement = document.querySelector('.total-price');
+  if (!totalInCartElement) {
+    return;
+  }
+  const totalOfProduct = product.price * quantity;
+  totalInCart += totalOfProduct;
+  totalInCartElement.textContent = formatPrice(totalInCart);
 }
 
 function submitHandler(event) {
@@ -70,7 +80,7 @@ function submitHandler(event) {
     }
 
   // TODO hér þarf að finna fjölda sem á að bæta við körfu með því að athuga
-  // á input
+  // á input --KOMIÐ
   const inputElement = event.target.querySelector('.quantity-input');
 
   if (!inputElement) {

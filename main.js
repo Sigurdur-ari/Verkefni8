@@ -1,5 +1,12 @@
 import { createCartLine, showCartContent } from './lib/ui.js';
 
+/**
+ * @typedef {Object} Product
+ * @property {number} id Auðkenni vöru, jákvæð heiltala stærri en 0.
+ * @property {string} title Titill vöru, ekki tómur strengur.
+ * @property {string} description Lýsing á vöru, ekki tómur strengur.
+ * @property {number} price Verð á vöru, jákvæð heiltala stærri en 0.
+ */
 const products = [
   {
     id: 1,
@@ -25,23 +32,16 @@ const products = [
 /** Bæta vöru í körfu */
 function addProductToCart(product, quantity) {
   // Hér þarf að finna `<tbody>` í töflu og setja `cartLine` inn í það
-  const cart = document.querySelector('.cart-content');
+  const cartTableBodyElement = document.querySelector('.cart table tbody');
 
-  if (!cart) {
-    console.warn('fann ekki .cart-content');
-    return;
-  }
-
-  const tableLine = cart.querySelector('tbody');
-
-  if (!tableLine) {
-    console.warn('fann ekki tbody');
+  if (!cartTableBodyElement) {
+    console.warn('fann ekki .cart table');
     return;
   }
 
   // TODO hér þarf að athuga hvort lína fyrir vöruna sé þegar til
   const cartLine = createCartLine(product, quantity);
-  tableLine.appendChild(cartLine);
+  cartTableBodyElement.appendChild(cartLine);
 
   // Sýna efni körfu
   showCartContent(true);

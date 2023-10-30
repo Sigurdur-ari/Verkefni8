@@ -35,7 +35,6 @@ const products = [
  * @param {number} quantity 
  */
 function addProductToCart(product, quantity) {
-  // Hér þarf að finna `<tbody>` í töflu og setja `cartLine` inn í það
   const cartTableBodyElement = document.querySelector('.cart table tbody');
 
   if (!cartTableBodyElement) {
@@ -72,7 +71,12 @@ function submitHandler(event) {
 
   // TODO hér þarf að finna fjölda sem á að bæta við körfu með því að athuga
   // á input
-  const quantity = 1;
+  const inputElement = event.target.querySelector('.quantity-input');
+
+  if (!inputElement) {
+    return;
+  }
+  const quantity = inputElement.value;
 
   // Bætum vöru í körfu (hér væri gott að bæta við athugun á því að varan sé til)
   addProductToCart(product, quantity);

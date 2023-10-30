@@ -54,7 +54,7 @@ function submitHandler(event) {
   event.preventDefault();
   
   // Finnum næsta element sem er `<tr>`
-  const parent = event.target.closest('tr')
+  const parent = event.target.closest('tr');
 
   // Það er með attribute sem tiltekur auðkenni vöru, t.d. `data-product-id="1"`
   const productId = Number.parseInt(parent.dataset.productId);

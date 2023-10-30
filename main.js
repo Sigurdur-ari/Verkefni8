@@ -29,7 +29,11 @@ const products = [
   },
 ];
 
-/** Bæta vöru í körfu */
+/**
+ * Bæta vöru í körfu
+ * @param  {Product} product
+ * @param {number} quantity 
+ */
 function addProductToCart(product, quantity) {
   // Hér þarf að finna `<tbody>` í töflu og setja `cartLine` inn í það
   const cartTableBodyElement = document.querySelector('.cart table tbody');
@@ -62,6 +66,10 @@ function submitHandler(event) {
   // Finnum vöru með þessu productId
   const product = products.find((i) => i.id === productId);
 
+  if (!product) {
+    return;
+    }
+
   // TODO hér þarf að finna fjölda sem á að bæta við körfu með því að athuga
   // á input
   const quantity = 1;
@@ -69,6 +77,7 @@ function submitHandler(event) {
   // Bætum vöru í körfu (hér væri gott að bæta við athugun á því að varan sé til)
   addProductToCart(product, quantity);
 }
+
 
 // Finna öll form með class="add"
 const addToCartForms = document.querySelectorAll('.add')

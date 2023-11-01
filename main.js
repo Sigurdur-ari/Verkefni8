@@ -1,5 +1,5 @@
 import { formatPrice } from './lib/helpers.js';
-import { createCartLine, showCartContent } from './lib/ui.js';
+import { createCartLine, showCartContent, updateCartTotal } from './lib/ui.js';
 
 /**
  * @typedef {Object} Product
@@ -50,6 +50,7 @@ function addProductToCart(product, quantity) {
   showCartContent(true);
 
   // TODO sýna/uppfæra samtölu körfu -- LAGFÆRA
+  updateCartTotal();
  
 }
 

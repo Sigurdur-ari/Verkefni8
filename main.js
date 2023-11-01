@@ -30,37 +30,27 @@ const products = [
   },
 ];
 
+
 /**
  * Bæta vöru í körfu
  * @param  {Product} product
  * @param {number} quantity 
  */
 function addProductToCart(product, quantity) {
-  let totalInCart = 0;
   const cartTableBodyElement = document.querySelector('.cart table tbody');
 
   if (!cartTableBodyElement) {
     console.warn('fann ekki .cart table');
     return;
   }
-
-  // TODO hér þarf að athuga hvort lína fyrir vöruna sé þegar til
-  //---EFTIR
- 
     const cartLine = createCartLine(product, quantity);
     cartTableBodyElement.appendChild(cartLine);
-  
+
   // Sýna efni körfu
   showCartContent(true);
 
   // TODO sýna/uppfæra samtölu körfu -- LAGFÆRA
-  const totalInCartElement = document.querySelector('.total-price');
-  if (!totalInCartElement) {
-    return;
-  }
-  const totalOfProduct = product.price * quantity;
-  totalInCart += totalOfProduct;
-  totalInCartElement.textContent = formatPrice(totalInCart);
+ 
 }
 
 function submitHandler(event) {
@@ -116,6 +106,5 @@ function finishHandler(event) {
   receipt.classList.remove('hidden');
 }
 
-const finishOrderForm = document.querySelector('finish');
-
+const finishOrderForm = document.getElementsByClassName('finish')[0];
 finishOrderForm?.addEventListener('submit', finishHandler);

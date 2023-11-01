@@ -45,6 +45,7 @@ function addProductToCart(product, quantity) {
   }
 
   // TODO hér þarf að athuga hvort lína fyrir vöruna sé þegar til
+  //---EFTIR
  
     const cartLine = createCartLine(product, quantity);
     cartTableBodyElement.appendChild(cartLine);
@@ -52,7 +53,7 @@ function addProductToCart(product, quantity) {
   // Sýna efni körfu
   showCartContent(true);
 
-  // TODO sýna/uppfæra samtölu körfu
+  // TODO sýna/uppfæra samtölu körfu -- LAGFÆRA
   const totalInCartElement = document.querySelector('.total-price');
   if (!totalInCartElement) {
     return;
@@ -103,3 +104,12 @@ for (const form of Array.from(addToCartForms)) {
 }
 
 // TODO bæta við event handler á form sem submittar pöntun
+function finishHandler(event) {
+  event.preventDefault();
+  //Sýna kvittun
+
+}
+
+const finishOrderForm = document.querySelector('finish');
+
+finishOrderForm?.addEventListener('submit', finishHandler);

@@ -103,11 +103,17 @@ for (const form of Array.from(addToCartForms)) {
   form.addEventListener('submit', submitHandler);
 }
 
+
+
 // TODO bæta við event handler á form sem submittar pöntun
 function finishHandler(event) {
   event.preventDefault();
   //Sýna kvittun
-
+  const receipt = document.querySelector('.receipt');
+  if(!receipt){
+    return;
+  }
+  receipt.classList.remove('hidden');
 }
 
 const finishOrderForm = document.querySelector('finish');
